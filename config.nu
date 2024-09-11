@@ -4,7 +4,7 @@ $env.config = {
   render_right_prompt_on_last_line: true,
 }
   
-use pnpm/ *
+use pnpm *
 
 alias ll = ls -l
 alias la = ls -a
@@ -12,6 +12,7 @@ alias lla = ll -a
 alias l = la
 alias vi = nvim
 alias neo = fastfetch
+alias npm = bun
 
 # sudo nixos-rebuild switch 不带默认git信息
 def nrs [msg: string, path_or_both: string = ., host?: string] {
