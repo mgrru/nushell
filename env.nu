@@ -1,4 +1,3 @@
-
 use git *
 
 def create_left_prompt [] {
