@@ -11,16 +11,13 @@ export def ga [
 
 # git commit -m
 # 可以使用管道输入要提交的文件
-# exp: [a.md b.md] | gcf "add a.md b.md"
+# exp: [a.md b.md] | gcm "add a.md b.md"
 export def gcm [
   msg: string = 'upd' # 默认提交信息 upd
 ] {
   each { |it| ga $it }
   git commit -m $msg | lines | str trim | table -i false
 }
-
-
-# git commit -m 'msg' | lines | str join | str contains 'nothing to commit'
 
 
 # ga && git commit -m
