@@ -13,8 +13,13 @@
 #		 basic-git-left-prompt $left
 # }
 def in_git_repo [] {
-  let res = (do { git branch --show-current o+e>| ignore } | lines) != ""
-  $res
+  try {
+    # let res = (git branch --show-current o+e| ignore | lines | str join | str length) > 0
+    let res = (do { (git branch --show-current) o+e>| ignore } | lines) != ""
+    return $res
+  } catch {
+    return false
+  }
 }
 
 export def basic-git-left-prompt [in_left_prompt] {
