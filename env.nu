@@ -20,11 +20,17 @@ def create_left_prompt [] {
     let host_color = (if (is-admin) { ansi red_bold } else { ansi red_bold })
     let host_segment = $"($host_color)($host)(ansi reset)"
 
-    let r_path = $path_segment | str replace --all (char path_sep) $"($separator_color)(char path_sep)($path_color)"
+    mut r_path = $path_segment | str replace --all (char path_sep) $"($separator_color)(char path_sep)($path_color)"
     let r_user = $user_segment
     let r_host = $host_segment
 
-    $"[ ($r_path)][($r_user)@($r_host)]"
+    if $dir == '~' {
+        $r_path = " "
+    } else {
+        $r_path = $" ($r_path)"
+    }
+
+    $"[($r_path)][($r_user)@($r_host)]"
 }
 
 def create_right_prompt [] {
